@@ -1,0 +1,28 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="!loading" class="row m-5">
+  <div class="col-2">
+    <img [src]="artist | noimage" class="img-thumbnail img-circle">
+  </div>
+  <div class="col">
+    <h1>{{ artist.name }}</h1>
+    <p class="badge">
+      <a [href]="artist.external_urls" target="_blank"><i class="fab fa-spotify"></i>Pagina en Spotify</a>
+    </p>
+  </div>
+  <div class="col-4 text-right">
+
+    <button routerLink="/search" class="btn btn-outline-danger">Volver</button>
+  </div>
+</div>
+<div *ngIf="!loading" class="row m-3">
+  <div class="card-columns center-block m-3 animated fadeIn">
+    <div *ngFor='let track of tracks' class="card puntero">
+      <img class="card-img-top" [src]="track | noimage" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"> {{ track.name }} </h5>
+        <a *ngFor="let artist of track.artists" class="badge badge-primary"> {{ artist.name }}</a>
+      </div>
+    </div>
+  </div>
+</div>
